@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from 'dotenv'
 import connectDB from "./config/db";
+import authRoutes from "./routes/auth"
 
 dotenv.config();
 
@@ -21,6 +22,10 @@ app.use(
 app.get("/health", (req, res) => {
   res.json({ status: "OK", message: "GigFlow API is running (TS)" });
 });
+
+// routes 
+app.use("/api/auth", authRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
