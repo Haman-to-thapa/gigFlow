@@ -6,6 +6,8 @@ import connectDB from "./config/db";
 import authRoutes from "./routes/auth"
 import gigRoutes from "./routes/gig";
 import bidRoutes from "./routes/bid";
+import http from 'http'
+import { initSocket } from "./socket";
 
 dotenv.config();
 
@@ -29,6 +31,12 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/gigs", gigRoutes);
 app.use("/api/bids", bidRoutes);
+
+
+
+const server = http.createServer(app);
+
+initSocket(server)
 
 const PORT = process.env.PORT || 5000;
 

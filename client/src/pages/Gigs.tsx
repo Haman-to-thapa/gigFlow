@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/authSlice";
+import socket from "../socket";
 
 
 
@@ -16,6 +17,7 @@ export default function Gigs() {
 
   const handleLogout = async () => {
     await api.post("/auth/logout");
+    socket.disconnect();
     dispatch(logout());
     navigate("/login");
   };
