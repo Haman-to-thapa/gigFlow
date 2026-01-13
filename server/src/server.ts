@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import dotenv from 'dotenv'
 import connectDB from "./config/db";
 import authRoutes from "./routes/auth"
+import gigRoutes from "./routes/gig";
+import bidRoutes from "./routes/bid";
 
 dotenv.config();
 
@@ -25,7 +27,8 @@ app.get("/health", (req, res) => {
 
 // routes 
 app.use("/api/auth", authRoutes);
-
+app.use("/api/gigs", gigRoutes);
+app.use("/api/bids", bidRoutes);
 
 const PORT = process.env.PORT || 5000;
 
